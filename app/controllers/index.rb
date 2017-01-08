@@ -11,19 +11,15 @@ get '/clever_login' do
     body: {
       code: params["code"],
       grant_type: "authorization_code",
-      redirect_uri: request.url
+      redirect_uri: request.url.split("?")[0]
     },
     basic_auth: {username: ENV["CLEVER_CLIENT_ID"], password: ENV['CLEVER_CLIENT_SECRET']}
   }
-
   token_request = HTTParty.post("https://clever.com/oauth/tokens", options)
-  p token_request
-  p "\n \n token_request is #{token_request}"
   token = token_request["access_token"]
-  p "\n \n token is #{token}"
-  session[:token] == token if token
-  p "\n \n session is"
-  session.each{ |k,v| puts "#{k} and #{v}"}
+  session[:token] = token if token
+  p "this is the token's value in the session"
+  p session[:token]
 
   # redirect to '/clever_details'
   @user_details = get_user_details
@@ -36,10 +32,5 @@ end
 
 private
   def get_user_details
-    options = {
-      headers: {
-
-      }
-    }
     HTTParty.get("https://api.clever.com/me", headers: "Bearer " + session[:token])
   end
