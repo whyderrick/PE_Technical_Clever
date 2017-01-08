@@ -18,10 +18,7 @@ get '/clever_login' do
   token_request = HTTParty.post("https://clever.com/oauth/tokens", options)
   token = token_request["access_token"]
   session[:token] = token if token
-  p "this is the token's value in the session"
-  p session[:token]
 
-  # redirect to '/clever_details'
   @user_details = get_user_details
   erb :'/users/profile'
 end
@@ -32,5 +29,5 @@ end
 
 private
   def get_user_details
-    HTTParty.get("https://api.clever.com/me", headers: "Bearer " + session[:token])
+    HTTParty.get("https://api.clever.com/me", headers: { "Authorization" => "Bearer " + session[:token]} )
   end
