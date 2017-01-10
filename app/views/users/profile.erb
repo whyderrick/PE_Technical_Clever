@@ -1,4 +1,10 @@
-<h1>Your account details</h1>
 <div class="profile-container">
-  <p>Logging you in. Hold tight for a second please.</p>
+  <h1>Your account details</h1>
+  <% if @token %>
+    <p>
+      Got a token: <%= @token %>
+    </p>
+  <% else %>
+    <p>Logging you in. Hold tight for a second please.</p>
+  <% end %>
 </div>
