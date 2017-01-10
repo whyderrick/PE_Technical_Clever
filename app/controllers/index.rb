@@ -5,8 +5,9 @@ get '/' do
 end
 
 get '/clever_login' do
-  if session[:token]
+  if session[:token] && request.xhr?
     @user_details = get_user_details
+    erb :'/_user_details.html', layout: false
   else
     post_options = {
       body: {
@@ -23,11 +24,11 @@ get '/clever_login' do
 
     token_request = HTTParty.post("https://clever.com/oauth/tokens", post_options)
     token = token_request["access_token"]
-    
+
     session[:token] = token if token
+    erb :'/users/profile'
   end
 
-  erb :'/users/profile'
 end
 
 get '/clever_logout' do

@@ -4,4 +4,22 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+
+  console.log('running');
+  showProfile();
+
 });
+
+function showProfile(){
+  console.log("profile show!");
+  if($('.profile-container').length > 0) {
+    $.ajax({
+      url: '/clever_login',
+      method: 'get',
+    })
+    .done(function(msg){
+      $('.profile-container').empty();
+      $('.profile-container').append(msg);
+    })
+  }
+}
