@@ -46,6 +46,7 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.4.2)
+    rdiscount (2.2.0.1)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -94,6 +95,7 @@ DEPENDENCIES
   pg
   rack-test
   rake
+  rdiscount
   rspec (~> 3.0)
   shotgun (~> 0.9.1)
   shoulda-matchers

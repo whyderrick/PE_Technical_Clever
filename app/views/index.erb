@@ -1,2 +1,6 @@
-<h1>Hello World!</h1>
-<a href=<%= "https://clever.com/oauth/authorize?response_type=code&client_id=#{ENV['CLEVER_CLIENT_ID']}&redirect_uri=http%3A%2F%2Flocalhost%3A9393/clever_login&district_id=586ab58e66da360001c74b06"%> alt="Log in with Clever"><img src="https://s3.amazonaws.com/assets.clever.com/sign-in-with-clever/sign-in-with-clever-full.png" /></a>
+<h1>Using Clever&rsquo;s Identity API</h1>
+
+<p>
+  Here&rsquo;s a <a href= "/blog/getting_started">blog post</a> on getting started. This app will show you the flow and the result of the API&rsquo;s <code>/me</code> endpoint.
+</p>
+<a href=<%= "https://clever.com/oauth/authorize?response_type=code&client_id=#{ENV['CLEVER_CLIENT_ID']}&redirect_uri=#{request.base_url}/clever_login&district_id=586ab58e66da360001c74b06"%> alt="Log in with Clever"><img src="https://s3.amazonaws.com/assets.clever.com/sign-in-with-clever/sign-in-with-clever-full.png" /></a>

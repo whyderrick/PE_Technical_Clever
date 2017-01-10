@@ -27,3 +27,4 @@ group :test, :development do
 end
 
 gem 'httparty'
+gem 'rdiscount'

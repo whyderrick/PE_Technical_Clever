@@ -1,6 +1,26 @@
-<h2><%= @tell_all %></h2>
-<h3><%= @code %></h3>
+<h1>Your account details</h1>
+<% if @user_details %>
+  <h3>Looks like you're signed in as a <span class="highlight"><%= @user_details['type'] %></span>
+  </h3>
+  <ul>
+    <li>Your <%= @user_details['data']['type'] %>
+      id is <span class="highlight"><%= @user_details['data']['id'] %></span>.
+    </li>
+    <li>Your district number is <span class="highlight"><%= @user_details['data']['district'] %></span>.
+    </li>
+  </ul>
 
-<p>
-  <%= @user_details %>
-</p>
+  <h3>Here's the full JSON response</h3>
+  <p>
+    <%= @user_details %>
+  </p>
+
+  <a href= '/clever_logout'>Log out of this app</a> (you&rsquo;ll still be logged in to Clever.)
+<% else %>
+  <h2>Nothing here for you yet</h2>
+  <p>
+    Try
+    <a href= <%= "https://clever.com/oauth/authorize?response_type=code&client_id=#{ENV['CLEVER_CLIENT_ID']}&redirect_uri=#{request.base_url}/clever_login&district_id=586ab58e66da360001c74b06" %>
+      > logging into with Clever </a> first.
+  </p>
+<% end %>
