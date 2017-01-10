@@ -5,13 +5,10 @@ $(document).ready(function() {
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
 
-  console.log('running');
   showProfile();
-
 });
 
 function showProfile(){
-  console.log("profile show!");
   if($('.profile-container').length > 0) {
     $.ajax({
       url: '/clever_login',
