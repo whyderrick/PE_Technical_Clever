@@ -1,5 +1,3 @@
-require 'HTTParty'
-
 get '/' do
   erb :'/index'
 end
@@ -23,7 +21,7 @@ get '/clever_login' do
 
     token_request = HTTParty.post("https://clever.com/oauth/tokens", post_options)
     token = token_request["access_token"]
-    
+
     session[:token] = token if token
   end
 
